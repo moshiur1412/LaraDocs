@@ -1,0 +1,39 @@
+Laravel Service Container কি?
+==============================
+# The Laravel service container is a powerful tool for managing class dependencies and performing dependency injection. Dependency injection is a fancy phrase that essentially means this: class dependencies are “injected” into the class via the constructor or, in some cases, “setter” methods.
+
+
+# একটি Powerful Tool যা লারাভেলের class dependency গুলো পরিচালনা এবং এদের ব্যবহারের অনুমতি প্রদান করে। 
+# আর এই সব কিছুই Laravel এ Dependency injection সিস্টেম ব্যবহার করে করা হয়। 
+# এটি এমন একটি সুবিধা, যা class dependency গুলোকে constructor বা কিছু ক্ষেত্রে “setter” method এর মাধ্যমে ক্লাসে “injected” করা হয়। 
+
+# আরো সহজ ভাবে বলা যায়, এটি এমন একটি কন্টেইনার যা ক্লাস গুলো কে তার কাছে hold করতে পারে এবং পরবর্তিতে ক্লাসের অবজেক্ট তৈরিতে আমরা আমাদের প্রয়োজন মতো এদেরকে ব্যবহার করতে পারি।
+
+
+কেন ব্যবহার করবেন?
+==================
+# যদি কোর পিএইচপি-তে Dependency Injection ব্যবহার করি তাহলে আমাদেরকে সার্ভিসের জন্য একটা Instance প্রোভাইড করতে হয়। কিন্তু লারাভেলে আমাদের Service এর জন্য কোনো Instance তৈরি করার দরকার নেই। 
+
+# আমরা কেবল আমাদের Service তৈরি করব এবং type hint ব্যবহার করে Inject করব বা লারাভেলের Service Container ব্যবহার করে এটি করব ।
+
+কখন ব্যবহার করবেন?
+===================
+# লারাভেল দিয়ে কোনো প্রজেক্ট তৈরি করেন তবে নিশ্চিত যে আপনি ইতিমধ্যে service container ফীচার টি ব্যবহার করেছেন। 
+# উদাহরণস্বরূপ, যদি আপনি আপনার কোনো Method এ type-hint Illuminate\Http\Request এবং $request ব্যবহার করেন। তাহলে লক্ষ্য করবেন, আপনি Request ক্লাসের কোনো Instance প্রোভাইড করেন নাই , তাহলে আপনি আপনার Method এ কিভাবে $request object ব্যবহার করতে পারেন? কারণ এখানে লারাভেলের স্বয়ংক্রিয় dependency injection কাজ করতেছে।
+
+# দুটি পরিস্থিতিতে service container ব্যবহার করা উচিৎ।
+
+1. যখন class constructor বা route একটি ইন্টারফেস type-hint করতে চান
+2. একটি লারাভেল package develop করার সময়
+
+
+কীভাবে ব্যবহার করবেন?
+=====================
+1. Binding [1. $this->app->bind()  2. App::bind() => facades]
+2. SingleTon Binding  [ $this->app->singleton() ]
+3. Binding a Instance [ $this->app->instance() ]
+4. Interface Binding  [ process(); checkout();]
+5. contextual Binding [ $this->app->when() => s3 bucket ]
+6. Tagging [ $this->app->tag() ]
+7. Extending Bindings [ $this->app->extending() ]
+8. Resolving [app::make(), app(), resolve() ]

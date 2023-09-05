@@ -1,0 +1,41 @@
+# In software engineering, dependency injection is a technique in which an object receives other objects that it depends on. These other objects are called dependencies. In the typical “using” relationship the receiving object is called a client and the passed object is called a service.
+
+১। Dempentency Injection হল অন্য object বা class উপর নির্ভরশীল হওয়া। 
+২। এটি constructor/setter ফাংশন দিয়ে করা হয়। 
+৩। তিনটি উপায়ে Dempentency গুলোকে inject করা হয়। 
+    1. constructor Injection
+    2. setter Injection
+    3. interface injection 
+
+
+# Constructor Injection
+
+Class Client {
+    public $service;
+    public function __construct(CarService $service){
+          $this->service = $service;
+    }
+}
+
+
+# Setter Injection
+
+Class Client {
+    public $service;
+    public function setService(CarService $service){
+          $this->service = $service;
+    }
+}
+
+
+#Interface Injection
+
+interface Services{
+    public function setService(CarService $service);
+}
+Class Client implements Services {
+    private $service;
+    public function setService(CarService $service){
+          $this->service = $service;
+    }
+}
